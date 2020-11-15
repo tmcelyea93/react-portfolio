@@ -6,103 +6,102 @@ import picture from "./../../images/picture.jpg";
 const AboutPage = () => {
   const useStyles = makeStyles({
     columnDiv: {
-      width: "50%",
-      display: "flex",
-      flexDirection: "column",
-      alignItems: "center",
-      justifyContent: "center",
+      ...styles.columnDiv,
+    },
+    mainDiv: {
+      width: "60%",
+      [theme.breakpoints.down("sm")]: {
+        width: "80%",
+      },
+      [theme.breakpoints.down("xs")]: {
+        width: "90%",
+      },
       margin: "0 auto",
     },
-    rowDiv: {
-      width: "70%",
-      display: "flex",
-      flexDirection: "row",
-      alignItems: "center",
-      justifyContent: "center",
+    headerText: {
+      ...styles.headerText,
     },
-    blockDiv: {
-      display: "block",
-      width: "100%",
-    },
-    title: {
-      ...theme.typography.button,
-      fontSize: "1.5rem",
-      marginTop: "2rem",
+    aboutText: {
+      marginTop: "6rem",
     },
     divider: {
-      backgroundColor: "black",
-      width: "18rem",
-      margin: "1rem",
-      marginTop: "0",
-      height: "0.12rem",
+      ...styles.divider,
     },
     bodyText: {
-      fontSize: "1rem",
+      fontSize: "1.1rem",
       color: "black",
       maxWidth: "100%",
       maxHeight: "100%",
-      textAlign: "justify",
-      display: "inline",
       margin: "1rem",
-      lineHeight: "2rem",
+      lineHeight: "1.6rem",
+    },
+    link: {
+      color: "black",
+      textShadow: "1px 1px #b2dfdb",
+      textDecoration: "none",
+      borderBottom: "1px solid #b2dfdb",
+      "&:hover": {
+        color: "#b2dfdb",
+        cursor: "pointer",
+      },
+    },
+    picture: {
+      maxHeight: "100%",
+      maxWidth: "100%",
+      margin: "1rem",
+      marginBottom: "6rem",
+      width: "40%",
+      [theme.breakpoints.down("md")]: {
+        width: "50%",
+      },
+      [theme.breakpoints.down("sm")]: {
+        width: "60%",
+      },
+      [theme.breakpoints.down("xs")]: {
+        width: "70%",
+      },
+      boxShadow: "8px 8px 12px rgba(0, 0, 0, 0.25)",
     },
   });
   const classes = useStyles();
 
+  const scrollToContact = () => {
+    const element = document.getElementById("Contact");
+    element.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
-    <Box className={classes.columnDiv} id="AboutMe">
-      <Typography className={classes.title}>About Me</Typography>
-      <Divider classes={{ root: classes.divider }} />
-      <Box className={classes.blockDiv}>
-        <img
+    <div>
+      <Box className={`${classes.columnDiv} ${classes.mainDiv}`} id="AboutMe">
+        <Typography className={`${classes.aboutText} ${classes.headerText}`}>
+          About Me
+        </Typography>
+        <Divider classes={{ root: classes.divider }} />
+        <Typography className={classes.bodyText}>
+          My name is <b>Tarah McElyea</b> and I am a recent graduate of the Full-Stack Web development
+          Program at University of California-Berkely Extension<br /> <br /> I really enjoy programmming and love to be
+          always learning something new. I have a strong work ethic 
+          and I can quickly pick up on new technologies. <br /> <br />{" "}
+          In my spare time I work as a bartender, showing I have the ability to
+          work well under pressure. You can find my {/* TODO - add resume link */}{" "}
+          <Link
+            onClick={scrollToContact}
+            className={classes.link}
+            underline="none"
+          >
+            contact information and links here
+          </Link>
+          .
+        </Typography>
+        <Box
+          component="img"
           src={picture}
           alt="A picture of me"
-          style={{
-            maxHeight: "100%",
-            maxWidth: "100%",
-            float: "left",
-            margin: "1rem",
-            marginBottom: "0.2rem",
-            width: "50%",
-            borderRadius: "10%",
-            border: "0.12rem solid black",
-          }}
+          className={classes.picture}
         />
-        <Typography className={classes.bodyText}>
-          Hi! My name is Tarah McElyea and I am a full stack web developer. I have completed 
-          the Full Stack Web Development Program at University of California- Berkeley Extension
-          Program.
-        </Typography>
       </Box>
-      <Typography className={classes.title} align="center">
-        My Skills & <br /> Technologies
-      </Typography>
-      <Divider classes={{ root: classes.divider }} />
-      <Box className={classes.rowDiv}>
-        <Box className={classes.columnDiv}>
-          <ul style={{ fontSize: "1rem", margin: "1rem" }}>
-            <li>Reactjs</li>
-            <li>Redux & React Hooks</li>
-            <li>HTML</li>
-            <li>CSS</li>
-          </ul>
-        </Box>
-        <Box className={classes.columnDiv}>
-          <ul style={{ fontSize: "1rem", margin: "1rem" }}>
-            <li>Python</li>
-            <li>Java</li>
-            <li>C</li>
-            <li>Terminal</li>
-            <li>Git</li>
-            <li>VSCode</li>
-          </ul>
-        </Box>
-      </Box>
-      <Typography align="center">
-        <span style={{ fontWeight: "bold" }}>Currently learning: </span>
-        JavaScript
-      </Typography>
-    </Box>
+      <SkillsPage />
+    </div>
   );
 };
 
