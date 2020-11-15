@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { makeStyles } from "@material-ui/core/styles";
 import {
   AppBar,
   Toolbar,
@@ -11,12 +10,19 @@ import {
   List,
   ListItem,
   ListItemText,
+  Box,
+  makeStyles,
 } from "@material-ui/core";
 import MenuRoundedIcon from "@material-ui/icons/MenuRounded";
 
 const NavBar = () => {
 
   const useStyles = makeStyles({
+    div: {
+      display: "flex",
+      marginLeft: "auto",
+      alignItems: "center",
+    },
     appBar: {
       background: "primary",
       color: "black",
@@ -72,7 +78,7 @@ const NavBar = () => {
   };
 
   const appBarButtons = (
-    <div style={{ display: "flex", marginLeft: "auto", alignItems: "center" }}>
+    <Box className={classes.div}>
       <Button className={classes.button} onClick={() => scrollTo("AboutMe")}>
         About Me
       </Button>
@@ -82,11 +88,11 @@ const NavBar = () => {
       <Button className={classes.button} onClick={() => scrollTo("Contact")}>
         Contact
       </Button>
-    </div>
+    </Box>
   );
 
   const sideDrawer = (
-    <div style={{ display: "flex", marginLeft: "auto", alignItems: "center" }}>
+    <Box className={classes.div}>
       <Drawer
         variant="temporary"
         classes={{
@@ -118,7 +124,7 @@ const NavBar = () => {
       <IconButton onClick={handleDrawerToggle}>
         <MenuRoundedIcon />
       </IconButton>
-    </div>
+    </Box>
   );
 
   return (

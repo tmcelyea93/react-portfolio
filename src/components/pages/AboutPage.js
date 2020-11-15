@@ -1,6 +1,7 @@
 import React from "react";
 import { Box, Typography, Divider, makeStyles } from "@material-ui/core";
 import theme from "../../themes/theme";
+import * as styles from "../../themes/commonStyles";
 import picture from "./../../images/picture.jpg";
 
 const AboutPage = () => {
